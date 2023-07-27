@@ -1,8 +1,7 @@
 #import <Foundation/Foundation.h>
 #include <stdio.h>
 
-int main (int argc, const char * argv[]) 
-  {
+int main (int argc, char **argv, char **envp) {
 
   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
@@ -44,7 +43,7 @@ int main (int argc, const char * argv[])
 					
 					for(NSString *f in direnum){
 												 
-						filepath=[dirpath stringByAppendingFormat:f];
+						filepath=[dirpath stringByAppendingFormat:@"%@",f];
 						attributes=[filemanager attributesOfItemAtPath:filepath error:NULL];	
 						NSLog(@"file name is:%@ - protection class:%@", filepath,[attributes objectForKey:NSFileProtectionKey]);
 						
