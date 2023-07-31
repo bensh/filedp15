@@ -9,10 +9,13 @@ Updates to work on iOS 15 done by me.
 - Grab the packaged .deb and push to device via scp.
 - Install the .deb specifying the inst dir because of rootless JB.
 ```
-$ dpkg --instdir=/var/jb -i com.bensh.filedp15_1.0_iphoneos-arm64.deb
+$ dpkg -i com.bensh.filedp15_1.0_iphoneos-arm64.deb
 ```
 - Find the binary, then run, or add to path
 ```
+dpkg -L com.bensh.filedp15  
+/var/jb/usr/bin/filedp15  
+
 $ find / -name filedp15 -print 2>/dev/null
 /private/preboot/XXXXXXXXXXXXXXXXXXXXXXXXXXX/jb-XXXXXX/procursus/var/root/filedp15
 ```
@@ -31,7 +34,7 @@ file name is:/private/var/mobile/Containers/Data/Application/CBDF993D-7908-40D3-
 ## Build
 Clone the git, and run make from the parent dir - requires [theos](https://theos.dev/docs/installation-macos) and updated sdks.
 ```
-filedp15$ make package FINALPACKAGE=1
+filedp15$ make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
 ==> Notice: Build may be slow as Theos isn’t using all available CPU cores on this computer. Consider upgrading GNU Make: https://theos.dev/docs/parallel-building
 > Making all for tool filedp15…
 make[3]: Nothing to be done for `internal-tool-compile'.
